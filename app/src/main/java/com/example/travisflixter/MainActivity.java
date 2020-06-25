@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -33,12 +35,32 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rView = findViewById(R.id.rview);
         movies = new ArrayList<>();
         //make adapter
-       final MoviesAdapter moviesAdapter = new MoviesAdapter(this, movies);
+
+        MoviesAdapter.OnLongClickListener onLongClickListener = new MoviesAdapter.OnLongClickListener(){
+            @Override
+            public void onItemLongClicked(int position) {
+
+                Toast.makeText(getApplicationContext(), "Movie Selected", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(getBaseContext(),   DetailView.class);
+                myIntent.putExtra("background", movies.get(position).getBackgroundPath());
+                myIntent.putExtra("title", movies.get(position).getTitle());
+                myIntent.putExtra("overview", movies.get(position).getOverview());
+                myIntent.putExtra("releaseDate", movies.get(position).getReleaseDate());
+                myIntent.putExtra("voteAvg", movies.get(position).getVoteAvg());
+
+                startActivity(myIntent);
+
+            }
+        };
+
+       final MoviesAdapter moviesAdapter = new MoviesAdapter(this, movies, onLongClickListener);
 
         //set the adapter
         rView.setAdapter(moviesAdapter);
         //set layout manager
         rView.setLayoutManager(new LinearLayoutManager(this));
+
+
 
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -66,5 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }

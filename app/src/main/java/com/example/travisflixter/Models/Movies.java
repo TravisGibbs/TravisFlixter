@@ -13,13 +13,15 @@ public class Movies {
     String title;
     String overview;
     String releaseDate;
-    int voteAvg;
+    Double voteAvg;
 
-    public String getBackgroundPath() {
-        return String.format("https://image.tmdb.org/t/p/w342/%s",backgroundPath);
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-
+    public Double getVoteAvg() {
+        return voteAvg;
+    }
 
     public String getOverview() {
         return overview;
@@ -27,6 +29,10 @@ public class Movies {
 
     public String getPosterPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
+    }
+
+    public String getBackgroundPath() {
+        return String.format("https://image.tmdb.org/t/p/w342/%s",backgroundPath);
     }
 
     public String getTitle() {
@@ -41,7 +47,7 @@ public class Movies {
         this.overview = jobj.getString("overview");
         this.backgroundPath = jobj.getString("backdrop_path");
         this.releaseDate = jobj.getString("release_date");
-        this.voteAvg = jobj.getInt("vote_average");
+        this.voteAvg = jobj.getDouble("vote_average");
     }
 
     public static List<Movies> fromJsonArray(JSONArray jarr) throws JSONException {

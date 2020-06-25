@@ -23,10 +23,16 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
     Context context;
     List<Movies> movies;
+    OnLongClickListener longClickListener;
 
-    public MoviesAdapter(MainActivity mainActivity, List<Movies> movies) {
+    public interface OnLongClickListener {
+        void onItemLongClicked(int position);
+    }
+
+    public MoviesAdapter(MainActivity mainActivity, List<Movies> movies, OnLongClickListener longClickListener) {
         this.movies = movies;
         this.context = mainActivity;
+        this.longClickListener = longClickListener;
     }
     // inflates layout from XML and returns to holder
     @NonNull
@@ -82,6 +88,27 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             int radius = 20;
             int margin = 5;
             Glide.with(context).load(imageURL).transform(new RoundedCornersTransformation(radius, margin)).into(ivPoster);
+            tvTitle.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    longClickListener.onItemLongClicked(getAdapterPosition());
+                    return true;
+                }
+            });
+            tvOverview.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    longClickListener.onItemLongClicked(getAdapterPosition());
+                    return true;
+                }
+            });
+            ivPoster.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    longClickListener.onItemLongClicked(getAdapterPosition());
+                    return true;
+                }
+            });
 
         }
     }
