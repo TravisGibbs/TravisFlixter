@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         MoviesAdapter.OnLongClickListener onLongClickListener = new MoviesAdapter.OnLongClickListener(){
             @Override
             public void onItemLongClicked(int position) {
-
+                // watches from long click on title overview or image and then sends relevant data to detail view
                 Toast.makeText(getApplicationContext(), "Movie Selected", Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(getBaseContext(),   DetailView.class);
                 myIntent.putExtra("background", movies.get(position).getBackgroundPath());
@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 myIntent.putExtra("overview", movies.get(position).getOverview());
                 myIntent.putExtra("releaseDate", movies.get(position).getReleaseDate());
                 myIntent.putExtra("voteAvg", movies.get(position).getVoteAvg());
-
+                myIntent.putExtra("movieId", movies.get(position).getMovieId());
+                myIntent.putExtra("pop", movies.get(position).getMovieId());
                 startActivity(myIntent);
 
             }
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        //call to api for list of movies
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(NP_URL, new JsonHttpResponseHandler() {
             @Override

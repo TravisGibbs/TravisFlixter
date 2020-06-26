@@ -13,7 +13,12 @@ public class Movies {
     String title;
     String overview;
     String releaseDate;
+    String movieId;
     Double voteAvg;
+
+    public String getMovieId() {
+        return movieId;
+    }
 
     public String getReleaseDate() {
         return releaseDate;
@@ -48,6 +53,8 @@ public class Movies {
         this.backgroundPath = jobj.getString("backdrop_path");
         this.releaseDate = jobj.getString("release_date");
         this.voteAvg = jobj.getDouble("vote_average");
+        this.movieId = String.valueOf(jobj.getInt("id"));
+
     }
 
     public static List<Movies> fromJsonArray(JSONArray jarr) throws JSONException {
