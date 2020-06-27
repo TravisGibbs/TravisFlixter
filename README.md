@@ -32,7 +32,7 @@ The following **stretch** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/TravisGibbs/TravisFlixter/blob/master/Kapture%202020-06-26%20at%2016.19.26.gif?raw=true' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/TravisGibbs/TravisFlixter/blob/master/Kapture%202020-06-27%20at%2016.42.40.gif?raw=true' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
